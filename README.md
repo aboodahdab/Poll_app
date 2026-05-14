@@ -10,7 +10,7 @@
 ### then use postman or insomnia to backend the backend
 ### and if frontend dropped open your browser to `localhost:3000`
 ### technologies used in this project:
-#### tailwind css CLI
-#### python flask
-#### html
-#### js
+#### Tailwind css CLI
+#### Python Flask
+#### Html
+#### JavaScript

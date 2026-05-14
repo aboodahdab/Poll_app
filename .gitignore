@@ -3,3 +3,4 @@ node_modules
 backend/venv
 backend/env
 frontend/css/output.css
+*.DS_Store

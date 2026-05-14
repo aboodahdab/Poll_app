@@ -1,5 +1,33 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block body %}
 
-{% block body %}
-{% include "votingform_code.html" %}
+<div
+  id="container"
+  class="h-full w-full justify-center items-center flex flex-col gap-6 max-w-md"
+>
+  <div id="poll_title" class="text-2xl font-semibold text-center">
+    Which programming language do you prefer?
+  </div>
+  <div
+    id="voting_form_container"
+    class="border-solid border-[1px] w-full max-w-md border-[rgb(213,204,215)] rounded-lg p-6 pt-10"
+  >
+    <div class="flex gap-6 flex-col" id="voting_form">
+      <div
+        class="flex gap-5 flex-col text-center"
+        id="voting_form_inputs_div"
+      ></div>
+
+      <button
+        class="bg-magenta text-white rounded-lg py-2 px-4 h-10 text-sm cursor-pointer font-medium transition duration-150ms capitalize flex items-center justify-center gap-2 hover:bg-whiter-magenta"
+        id="voting_btn"
+        data-checked="unchecked"
+      >
+        Vote
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+  window.UNIQUE_ID = "{{ unique_id }}";
+</script>
 {% endblock %}
