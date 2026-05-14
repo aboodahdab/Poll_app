@@ -3,8 +3,8 @@ import secrets
 import pymongo
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = client["voting-app"]
-mycol = mydb["votes"]
+mydb = client["poll-app"]
+mycol = mydb["polls-and-votes"]
 
 
 def generate_unique_id(length):
@@ -17,10 +17,11 @@ def check_if_unique_id_is_valid(unqiue_id):
     return voting_id
 
 
-def set_voting(unique_id, vote_name, options):
+def set_voting(unique_id, vote_name, options,date):
     print("ops options", options)
-    mycol.insert_one({"voting_id": unique_id, "voting_name": vote_name,
-                     "voting_options": options, "votes": {}})
+    query = {"voting_id": unique_id, "voting_name": vote_name,
+             "voting_options": options, "votes": {},"date":date}
+    mycol.insert_one(query)
 
 
 def add_vote(unique_id, vote):
@@ -39,6 +40,6 @@ def add_vote(unique_id, vote):
 
 def get_poll_results(voting_id):
     poll = mycol.find_one({"voting_id": voting_id})
-    votes=poll["votes"]
-    print(poll,votes)
+    votes = poll["votes"]
+    print(poll, votes)
     return votes

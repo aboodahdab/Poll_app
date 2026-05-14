@@ -4,15 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="frontend/css/output.css" />
+    <link rel="stylesheet" href="/frontend/css/output.css" />
     <link
       rel="shortcut icon"
-      href="frontend/images/strawpoll.jpg"
+      href="/frontend/images/strawpoll.jpg"
       type="image/x-icon"
     />
   </head>
 
-  <body class="w-full h-full bg-[rgb(17,24,39)] text-white">
+  <body
+    class="w-full h-full flex justify-center items-center bg-weird-bg overflow-hidden relative"
+  >
     {% block body %} {% endblock %} {% if js_file %}
     <script src="{{ url_for('static', filename='js_statics/' + js_file) }}"></script>
     {% endif %}

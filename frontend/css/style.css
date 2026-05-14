@@ -1,4 +1,16 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@theme {
+  --color-magenta: hsl(290, 30%, 45%, 1);
+  --color-weird-red: rgb(205, 152, 156);
+  --color-whiter-magenta: hsl(290, 30%, 45%, 0.9);
+  --color-inputs-background: hsl(290, 10%, 96%);
+  --color-weird-white: rgb(245, 244, 246);
+  --color-white-weird-magenta: hsl(290, 15%, 88%, 1);
+  --color-weird-text-magenta: rgb(122, 103, 131);
+  --color-light-purple: hsl(280, 12%, 46%);
+  --color-weird-bg: hsl(270, 10%, 96%);
+  --color-font-something: #7a6783;
+  --color-weirder-whiter: hsl(290, 12%, 82%) ;
+  --color-votes-magenta: #8a5095;
+}
