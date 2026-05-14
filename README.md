@@ -1,6 +1,10 @@
 ## Poll app 
 ### A very democratic one 
-### note:right now only the backend is working
+- [x] Implement votings and new_vote page
+- [x] Implement results and results page
+- [ ] Implement notifications in new pages
+- [ ] Implement time in polls
+- [ ] Write a good readme 
 ## How to run:
 ### first go to the backend using `cd backend`
 ### then make a virtual enviroment using `python3 -m venv venv`
