@@ -2,7 +2,7 @@
 ### A very democratic one 
 - [x] Implement votings and new_vote page
 - [x] Implement results and results page
-- [ ] Implement notifications in new pages
+- [ ] Implement notifications in new pages (new_vote and results)
 - [ ] Implement time in polls
 - [ ] Write a good readme 
 ## How to run:
