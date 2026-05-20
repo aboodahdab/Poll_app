@@ -17,25 +17,34 @@ def check_if_unique_id_is_valid(unqiue_id):
     return voting_id
 
 
-def set_voting(unique_id, vote_name, options,date):
+def set_voting(unique_id, vote_name, options, date, length):
     print("ops options", options)
+    votes_query = {}
+    for i in options:
+        UUID = generate_unique_id(length)
+        votes_query[UUID] = {"title": i, "count": 0}
     query = {"voting_id": unique_id, "voting_name": vote_name,
-             "voting_options": options, "votes": {},"date":date}
+             "voting_options": options, "votes": votes_query, "date": date}
     mycol.insert_one(query)
 
 
 def add_vote(unique_id, vote):
+    print("whyyyyy cats")
 
     find_one = check_if_unique_id_is_valid(unique_id)
     votes = find_one.get("votes", {})
-    print(find_one)
+
+    print(vote in votes, votes)
+
     if vote in votes:
+        print("well")
+        option = votes[vote]
+        count = option["count"]
+        count += 1
+        print(votes[vote], count)
 
-        votes[vote] = votes[vote]+1
-
-    else:
-        votes[vote] = 1
-    mycol.update_one({"voting_id": unique_id}, {"$set": {"votes": votes}})
+    mycol.update_one({"voting_id": unique_id}, {
+                     "$set": {f"votes.{vote}.count": count}})
 
 
 def get_poll_results(voting_id):

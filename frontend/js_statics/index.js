@@ -4,10 +4,11 @@ const $optionsBtn = document.querySelector("#ops-btn");
 const $optionsDiv = document.querySelector("#ops-div");
 const $firstSvgDiv = document.querySelector("#first-svg-div");
 const $pageContainer = document.querySelector("#the-everything-div");
-const $errorDiv = document.querySelector("#the-error-div");
-const $errorParagraph = document.querySelector("#the-error-p");
+const $theMessageDiv = document.querySelector("#the-message-div");
+const $theMessageP = document.querySelector("#the-message-p");
 const $errorSvg = document.querySelector("#error-svg");
 const $successSvg = document.querySelector("#success-svg");
+
 let $optionsInputs = document.querySelectorAll("[data-element='option']");
 
 let inputCounter = 1;
@@ -87,7 +88,9 @@ function addTheOption() {
   newElement.dataset.element = "option";
   newElement.placeholder = `Option ${inputCounter}`;
   newElement.classList.add(...classes);
-  const newDivClasses = "flex gap-2 items-center".split(" ");
+  const newDivClasses = "flex gap-2 items-center ::placeholder text-sm".split(
+    " ",
+  );
   newDiv.classList.add(...newDivClasses);
 
   newDiv.append(newElement);
@@ -113,15 +116,15 @@ function showMessage(msg, mode) {
   const $theRealSvg = mode ? $successSvg : $errorSvg;
 
   $theRealSvg.classList.remove("hidden");
-  $errorDiv.classList.remove("translate-y-full");
-  $errorDiv.classList.remove("bottom-0");
-  $errorDiv.classList.add("bottom-8");
-  $errorParagraph.textContent = msg;
+  $theMessageDiv.classList.remove("translate-y-full");
+  $theMessageDiv.classList.remove("bottom-0");
+  $theMessageDiv.classList.add("bottom-8");
+  $theMessageP.textContent = msg;
   setTimeout(() => {
-    $errorDiv.classList.add("translate-y-full");
-    $errorDiv.classList.add("bottom-0");
-    $errorDiv.classList.remove("bottom-8");
-    $errorDiv.addEventListener(
+    $theMessageDiv.classList.add("translate-y-full");
+    $theMessageDiv.classList.add("bottom-0");
+    $theMessageDiv.classList.remove("bottom-8");
+    $theMessageDiv.addEventListener(
       "transitionend",
       () => {
         $theRealSvg.classList.add("hidden");
@@ -131,7 +134,7 @@ function showMessage(msg, mode) {
   }, 4000);
 }
 function changeTheUI(unqiue_id) {
-  $pageContainer.innerHTML = ` <div class="flex flex-col gap-6 max-w-[448px] w-full gap-5" id="the-everything-div" > <div id="create-poll-weird-div" class="text-[24px] font-semibold text-center"> Poll Created! </div> <div class="border-[1px] border-[hsl(290,12%,82%,1)] border-solid rounded-[6px] flex flex-col justify-center p-6 pt-11 bg-[#ffff]" id="poll-form-div" > <label class="text-sm text-center text-weird-text-magenta"> Share this link </label> <div class="m-w-[350px] flex mt-2 gap-2"> <input type="text" class="border-[rgb(236,233,236)] border-[1px] border-solid rounded-[6px] text-sm bg-inputs-background py-2 px-3 w-full" readonly id="readonly-data-input"  /> <button id="copy-btn" class="border-[rgb(236,233,236)] border-[1px] border-solid bg-inputs-background flex justify-center rounded-md w-[46px] h-10 items-center cursor-pointer transition duration-150 ease-in-out hover:bg-weird-red" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy h-4 w-4" > <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect> <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" ></path> </svg> </button> </div> <div class="mt-5"> <button class="bg-white-weird-magenta py-2 px-4 w-full rounded-md font-sm cursor-pointer flex justify-center items-center" id="view-results-btn" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 h-4 w-4" > <path d="M3 3v16a2 2 0 0 0 2 2h16"></path> <path d="M18 17V9"></path> <path d="M13 17V5"></path> <path d="M8 17v-3"></path> </svg> View Results </button> </div> </div> <div class="flex items-center gap-2 bg-weird-white border-solid border-[1px] border-[rgb(213,204,215)] max-w-89 w-full p-4 rounded-[8px] right-8 ease-in-out translate-y-full duration-500 transiton-transform absolute bottom-0" id="the-error-div" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy h-4 w-4" > <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect> <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path> </svg> <p id="the-error-p" class="text-[13px]">Please enter a poll title</p> </div> </div> `;
+  $pageContainer.innerHTML = ` <div class="flex flex-col gap-6 max-w-[448px] w-full gap-5" id="the-everything-div" > <div id="create-poll-weird-div" class="text-[24px] font-semibold text-center"> Poll Created! </div> <div class="border-[1px] border-[hsl(290,12%,82%,1)] border-solid rounded-[6px] flex flex-col justify-center p-6 pt-11 bg-[#ffff]" id="poll-form-div" > <label class="text-sm text-center text-weird-text-magenta"> Share this link </label> <div class="m-w-[350px] flex mt-2 gap-2"> <input type="text" class="border-[rgb(236,233,236)] border-[1px] border-solid rounded-[6px] text-sm bg-inputs-background py-2 px-3 w-full" readonly id="readonly-data-input"  /> <button id="copy-btn" class="border-[rgb(236,233,236)] border-[1px] border-solid bg-inputs-background flex justify-center rounded-md w-[46px] h-10 items-center cursor-pointer transition duration-150 ease-in-out hover:bg-weird-red" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy h-4 w-4" > <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect> <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" ></path> </svg> </button> </div> <div class="mt-5"> <button class="bg-white-weird-magenta py-2 px-4 w-full rounded-md font-sm cursor-pointer flex justify-center items-center" id="view-results-btn" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 h-4 w-4" > <path d="M3 3v16a2 2 0 0 0 2 2h16"></path> <path d="M18 17V9"></path> <path d="M13 17V5"></path> <path d="M8 17v-3"></path> </svg> View Results </button> </div> </div> <div class="flex items-center gap-2 bg-weird-white border-solid border-[1px] border-[rgb(213,204,215)] max-w-89 w-full p-4 rounded-[8px] right-8 ease-in-out translate-y-full duration-500 transiton-transform absolute bottom-0" id="the-message-div" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy h-4 w-4" > <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect> <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path> </svg> <p id="the-error-p" class="text-[13px]">Please enter a poll title</p> </div> </div> `;
   const $copyBtn = document.querySelector("#copy-btn");
   const $dataInput = document.querySelector("#readonly-data-input");
 
