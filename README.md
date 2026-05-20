@@ -7,6 +7,7 @@
 - [ ] Write a good readme
 - [ ] Implement unit tests
 - [ ] Make notifications swipe
+- [ ] Make the design responsive
 ## How to run:
 ### first go to the backend using `cd backend`
 ### then make a virtual enviroment using `python3 -m venv venv`
