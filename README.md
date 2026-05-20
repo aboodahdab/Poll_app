@@ -2,9 +2,11 @@
 ### A very democratic one 
 - [x] Implement votings and new_vote page
 - [x] Implement results and results page
-- [ ] Implement notifications in new pages (new_vote and results)
-- [ ] Implement time in polls
-- [ ] Write a good readme 
+- [x] Implement notifications in new pages (new_vote and results)
+- [x] Implement time in polls
+- [ ] Write a good readme
+- [ ] Implement unit tests
+- [ ] Make notifications swipe
 ## How to run:
 ### first go to the backend using `cd backend`
 ### then make a virtual enviroment using `python3 -m venv venv`
