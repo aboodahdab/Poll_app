@@ -15,7 +15,7 @@
         id="title-input"
         type="text"
         placeholder="What would you like to ask?"
-        class="border-[rgb(236,233,236)] border-[1px] border-solid rounded-[6px] bg-inputs-background py-2 px-3 focus-visible:outline-magenta"
+        class="border-[rgb(236,233,236)] border-[1px] border-solid rounded-[6px] bg-inputs-background py-2 px-3 focus-visible:outline-magenta ::placeholder text-sm"
       />
     </div>
     <div class="flex flex-col gap-3">
@@ -26,7 +26,7 @@
             data-element="option"
             type="text"
             placeholder="Option 1"
-            class="border-[rgb(236,233,236)] border-[1px] w-full border-solid rounded-[6px] bg-inputs-background py-2 px-3 focus-visible:outline-magenta"
+            class="border-[rgb(236,233,236)] border-[1px] w-full border-solid rounded-[6px] bg-inputs-background py-2 px-3 focus-visible:outline-magenta ::placeholder text-sm"
           />
           <div
             class="h-10 w-11 hidden flex justify-center items-center rounded-[6px] hover:bg-[rgb(205,152,156)] cursor-pointer"
@@ -56,7 +56,7 @@
       </div>
       <button
         id="ops-btn"
-        class="capitalize border-[rgb(236,233,236)] border-[1px] border-solid bg-weird-white rounded-[6px] max-w-[128px] px-3 text-sm cursor-pointer h-9 flex items-center gap-2 transition duration-150 ease-in-out hover:bg-weird-red"
+        class="capitalize border-[rgb(236,233,236)] border-[1px] border-solid bg-weird-white rounded-[6px] max-w-[128px] px-3 text-sm cursor-pointer h-9 flex items-center gap-3 transition duration-150 ease-in-out hover:bg-weird-red"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@
 </div>
 <div
   class="flex items-center gap-2 bg-weird-white border-solid border-[1px] border-[rgb(213,204,215)] max-w-89 w-full p-4 rounded-[8px] right-8 ease-in-out translate-y-full duration-500 transiton-transform absolute bottom-0"
-  id="the-error-div"
+  id="the-message-div"
 >
   <svg
     class="hidden"
@@ -120,5 +120,5 @@
       clip-rule="evenodd"
     ></path>
   </svg>
-  <p id="the-error-p" class="text-[13px]">Please enter a poll title</p>
+  <p id="the-message-p" class="text-[13px]">Please enter a poll title</p>
 </div>
