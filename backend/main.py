@@ -1,6 +1,8 @@
 from flask import redirect, Flask, render_template, request, jsonify
 from functions import generate_unique_id, set_voting, check_if_unique_id_is_valid, add_vote, get_poll_results
 from datetime import timedelta, datetime
+import time
+
 app = Flask(__name__, static_folder="../frontend",
             template_folder="../frontend/temps")
 
@@ -17,10 +19,10 @@ def create_new_voting():
     try:
 
         if request.is_json:
-            now = datetime.now()
-            now2 = now.strftime("%Y-%m-%d %H:%M:%S")
 
-            now3 = datetime.strptime(now2, "%Y-%m-%d %H:%M:%S")
+            ms = int(time.time() * 1000)
+
+            print(ms, type(ms))
             print("it's json")
             data = request.get_json()
             question = data["question"]
@@ -28,10 +30,9 @@ def create_new_voting():
             print("yay ops", options)
             if isinstance(options, list) and options != [] and isinstance(question, str) and question != "":
 
-                print("that is a list")
                 unique_id = generate_unique_id(UNIQUE_ID_LENGTH)
                 set_voting(unique_id, question, options,
-                           now3, UNIQUE_ID_LENGTH)
+                           ms, UNIQUE_ID_LENGTH)
                 return jsonify({"status": "success", "message": "created new poll successfly!", "unique_id": unique_id}), 200
             return jsonify({"status": "fail", "message": "Invalid sent data"}), 400
 
@@ -70,7 +71,7 @@ def get_info():
         unique_id = data["unique_id"]
         info = check_if_unique_id_is_valid(unique_id)
         del info["_id"]
-        print(info)
+
         return jsonify({"status": "success", "message": "got info and intel successfly", "intel_info": info}), 200
 
     except Exception as e:
@@ -87,27 +88,27 @@ def catch_everything_votes(unique_id):
 
         if not checking:
             print("bad")
-            return render_template("error.html", error_reason="page not found".capitalize(), js_file="index.js"), 404
-        print("good job", unique_id)
+            return render_template("error.html", error_reason="page not found".capitalize()), 404
+
         return render_template("votingform.html", unique_id=unique_id, js_file="votingform.js")
     except Exception as e:
         print("catching everything", e)
-        return render_template("error.html", error_reason="something went wrong".capitalize(), js_file="index.js"), 500
+        return render_template("error.html", error_reason="something went wrong".capitalize(), js_file="error.js"), 500
 
 
 @app.route("/poll/<unique_id>/results",)
 def catch_everything_results(unique_id):
     try:
         checking = check_if_unique_id_is_valid(unique_id)
-
+        print("is checking", checking)
         if not checking:
 
-            return render_template("error.html", error_reason="page not found".capitalize(), js_file="index.js"), 404
+            return render_template("error.html", error_reason="page not found".capitalize()), 404
 
         return render_template("results.html", unique_id=unique_id, js_file="results.js")
     except Exception as e:
         print("catching everything", e)
-        return render_template("error.html", error_reason="something went wrong".capitalize(), js_file="index.js"), 500
+        return render_template("error.html", error_reason="something went wrong".capitalize(), js_file="error.js"), 500
 
 
 @app.route("/poll_results", methods=["POST"])
@@ -127,6 +128,11 @@ def getting_results():
     except Exception as e:
         print("error in results", e)
         return jsonify({"status": "fail", "message": "server internal error".title()}), 500
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html', error_reason="page not found".capitalize()), 404
 
 
 if __name__ == "__main__":

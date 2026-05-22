@@ -1,1 +1,12 @@
-{% extends "base.html" %} {% block body %} {% endblock %}
+{% extends "base.html" %} {% block body %}
+<div
+  class="flex flex-col gap-4 bg-[#E2DEE3] justify-center w-full h-full items-center"
+>
+  <div class="text-4xl font-bold text-center text-[#40334D]">404</div>
+  <div class="text-light-purple text-xl">Oops! {{ error_reason }}</div>
+  <a href="/" class="text-votes-magenta text-center underline"
+    >Return to Home</a
+  >
+</div>
+
+{% endblock %}

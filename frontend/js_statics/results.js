@@ -9,8 +9,7 @@ const $errorSvg = document.querySelector("#error-svg");
 const $successSvg = document.querySelector("#success-svg");
 const $theMessageP = document.getElementById("the-message-p");
 const $infoP = document.getElementById("info-p");
-const now = Date.now();
-console.log(now);
+
 $backToPollBtn.addEventListener("click", () => {
   window.location = `/poll/${unique_id}/new_vote`;
 });
@@ -123,22 +122,52 @@ $shareBtn.addEventListener("click", () => {
 });
 window.onload = loadData();
 
+const now = Date.now();
 function transformTime(time) {
-  const dateTime = new Date(time);
-  time = now - dateTime.getTime();
+  // Timestamps coming from the server are in GMT.
+
+  console.log(time, typeof time);
+  time = +time;
+  time = now - time;
+  console.log(time);
 
   const minutes = Math.floor(time / (1000 * 60));
   const hours = Math.floor(time / (1000 * 60 * 60));
   const days = Math.floor(time / (1000 * 60 * 60 * 24));
-  let finalDate = "just now";
+  const months = Math.floor(time / (1000 * 60 * 60 * 24 * 30));
+  const years = Math.floor(time / (1000 * 60 * 60 * 24 * 30 * 12));
 
-  if (days >= 1) {
-    finalDate = `${days} day(s) ago`;
+  console.log("mins", minutes);
+  console.log("hours", hours);
+  console.log("days", days);
+  console.log("months", months);
+  console.log("years", years);
+  let finalDate = "Just now";
+  if (years >= 1) {
+    console.log("years");
+    years == 1
+      ? (finalDate = `${years} year ago`)
+      : (finalDate = `${years} years ago`);
+  } else if (months >= 1) {
+    console.log("years");
+    months == 1
+      ? (finalDate = `${months} month ago`)
+      : (finalDate = `${months} months ago`);
+  } else if (days >= 1) {
+    console.log("years");
+    days == 1
+      ? (finalDate = `${days} day ago`)
+      : (finalDate = `${days} days ago`);
   } else if (hours >= 1) {
-    finalDate = `${hours} hour(s) ago`;
+    console.log("years");
+    hours == 1
+      ? (finalDate = `${hours} hour ago`)
+      : (finalDate = `${hours} hours ago`);
   } else if (minutes >= 1) {
-    finalDate = `${minutes} minute(s) ago`;
+    console.log("years");
+    minutes == 1
+      ? (finalDate = `${minutes} minute ago`)
+      : (finalDate = `${minutes} minutes ago`);
   }
-
   return finalDate;
 }
