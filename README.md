@@ -1,4 +1,4 @@
-## Poll website
+# Poll website
 ### This is a poll website that allows users to make polls, and vote for them.
 ## Tech stack:
 ### Backend:Python
@@ -6,7 +6,11 @@
 ### DB:MongoDB
 ### Framework:Flask
 ## How to run:
-### first go to the project's folder using ```cd voting-app``` in the cmd
+## How to setup tailwind ClI:
+### First go to frontend using ```cd frontend```
+### Next install and activate Tailwindcss's CLI using ```npx @tailwindcss/cli -i ./css/style.css -o ./css/output.css --watch```
+## How to run backend:
+### First go to the project's folder using ```cd voting-app``` in the cmd
 ### Then go to the backend folder using ```cd backend``` in the cmd
 ### After that make a virtual environment using ```python3 -m venv venv```
 ### Next activate it using ```source venv/bin/activate```
